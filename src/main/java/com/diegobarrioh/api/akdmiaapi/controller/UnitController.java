@@ -3,6 +3,15 @@ package com.diegobarrioh.api.akdmiaapi.controller;
 import com.diegobarrioh.api.akdmiaapi.exception.UnitNotFoundException;
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Unit;
 import com.diegobarrioh.api.akdmiaapi.domain.repository.UnitRepository;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
+import io.swagger.v3.oas.models.annotations.OpenAPI31;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1",produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "2. Unit", description = "Endpoints to manage Units")
 public class UnitController {
 
     private final UnitRepository unitRepository;
@@ -32,7 +42,11 @@ public class UnitController {
     }
 
     @GetMapping("/units/{id}")
-    Unit one(@PathVariable Long id) {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Element found"),
+            @ApiResponse(responseCode = "404", description = "Element not found")
+    })
+    Unit one(@Parameter(description = "The unit id you are looking for", required = true) @PathVariable Long id) {
         return unitRepository.findById(id)
                 .orElseThrow(() -> new UnitNotFoundException(id));
     }
