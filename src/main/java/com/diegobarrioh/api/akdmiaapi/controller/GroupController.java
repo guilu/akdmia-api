@@ -62,7 +62,7 @@ public class GroupController {
                     @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
             }
     )
-    Group newGroup(@RequestBody Group newGroup) {
+    Group newGroup(@Parameter(name="The new group to be added") @RequestBody Group newGroup) {
         return groupRepository.save(newGroup);
     }
 

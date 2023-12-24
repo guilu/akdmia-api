@@ -52,7 +52,7 @@ public class Quiz extends BaseEntity {
 
     public String toJson() {
 
-        StringBuffer test = new StringBuffer();
+        StringBuilder test = new StringBuilder();
 
         for (QuizQuestion question : quizQuestions) {
             test.append(question.toString());

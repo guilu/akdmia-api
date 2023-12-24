@@ -49,11 +49,11 @@ public class Question extends BaseEntity {
         this.unit = unit;
     }
 
-    public String getTexto() {
+    public String getText() {
         return text;
     }
 
-    public void setTexto(String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
@@ -74,9 +74,9 @@ public class Question extends BaseEntity {
     }
 
     public String toString(){
-        String json = " Question:"+this.getId() + ", Unit:"+this.getUnit().getId();
+        StringBuilder json = new StringBuilder(" Question:" + this.getId() + ", Unit:" + this.getUnit().getId());
         for(Answer answer: answers){
-            json += answer.toString();
+            json.append(answer.toString());
         }
         return "{" + json + "}";
     }

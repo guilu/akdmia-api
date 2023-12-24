@@ -42,11 +42,11 @@ public class Answer extends BaseEntity {
         this.question = question;
     }
 
-    public String getTexto() {
+    public String getText() {
         return text;
     }
 
-    public void setTexto(String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
