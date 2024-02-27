@@ -1,4 +1,4 @@
-package com.diegobarrioh.api.akdmiaapi.controller;
+package com.diegobarrioh.api.akdmiaapi.controller.v1;
 
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Group;
 import com.diegobarrioh.api.akdmiaapi.exception.UnitNotFoundException;
@@ -48,8 +48,11 @@ public class UnitController {
                     @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
             }
     )
-    List<Unit> all() {
-        return unitRepository.findAll();
+    List<Unit> all(@RequestParam(value = "q",required = false) String search) {
+        if (search == null || search.isEmpty()) {
+            return unitRepository.findAll();
+        }
+        return unitRepository.findByTextContainingIgnoreCase(search);
     }
     // end::get-aggregate-root[]
 

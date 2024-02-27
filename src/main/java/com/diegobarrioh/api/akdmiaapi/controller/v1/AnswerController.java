@@ -1,4 +1,4 @@
-package com.diegobarrioh.api.akdmiaapi.controller;
+package com.diegobarrioh.api.akdmiaapi.controller.v1;
 
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Answer;
 import com.diegobarrioh.api.akdmiaapi.domain.repository.AnswerRepository;
@@ -15,13 +15,19 @@ import java.util.List;
 public class AnswerController {
 
     private final AnswerRepository answerRepository;
-    public AnswerController(AnswerRepository answerRepository) {
+    public AnswerController(AnswerRepository answerRepository)
+    {
         this.answerRepository = answerRepository;
     }
 
     @GetMapping("/answers")
-    List<Answer> all(){
-        return answerRepository.findAll();
+    List<Answer> all(@RequestParam(value = "q",required = false) String search){
+        if (search == null || search.isEmpty()) {
+            return answerRepository.findAll();
+        }
+
+        return answerRepository.findByTextContainingIgnoreCase(search);
+
     }
 
     @PostMapping("/answers")

@@ -1,4 +1,4 @@
-package com.diegobarrioh.api.akdmiaapi.controller;
+package com.diegobarrioh.api.akdmiaapi.controller.v1;
 
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Question;
 import com.diegobarrioh.api.akdmiaapi.domain.repository.QuestionRepository;
@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -21,8 +22,12 @@ public class QuestionController {
     }
 
     @GetMapping("/questions")
-    List<Question> all(){
-        return questionRepository.findAll();
+    List<Question> all(@RequestParam(value = "q", required = false) String search)
+    {
+        if (search == null || search.isEmpty()) {
+            return questionRepository.findAll();
+        }
+        return questionRepository.findQuestionsByTextContainingIgnoreCase(search);
     }
 
     @PostMapping("/questions")

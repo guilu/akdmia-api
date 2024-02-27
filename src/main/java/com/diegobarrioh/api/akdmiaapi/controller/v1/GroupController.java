@@ -1,16 +1,14 @@
-package com.diegobarrioh.api.akdmiaapi.controller;
+package com.diegobarrioh.api.akdmiaapi.controller.v1;
 
-import com.diegobarrioh.api.akdmiaapi.exception.GroupNotFoundException;
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Group;
 import com.diegobarrioh.api.akdmiaapi.domain.repository.GroupRepository;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import com.diegobarrioh.api.akdmiaapi.exception.GroupNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.models.annotations.OpenAPI31;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,8 +41,11 @@ public class GroupController {
                     @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
             }
     )
-    List<Group> all(){
-        return groupRepository.findAll();
+    List<Group> all(@RequestParam(value = "q",required = false) String search){
+        if (search == null || search.isEmpty()) {
+            return groupRepository.findAll();
+        }
+        return groupRepository.findByTextContainingIgnoreCase(search);
     }
 
     @PostMapping("/groups")
