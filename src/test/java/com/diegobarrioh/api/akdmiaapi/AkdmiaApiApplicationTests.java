@@ -4,8 +4,6 @@ import com.diegobarrioh.api.akdmiaapi.security.xss.RequestWrapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Matchers;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 

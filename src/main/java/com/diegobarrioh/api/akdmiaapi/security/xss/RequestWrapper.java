@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 @Log4j2
 public class RequestWrapper extends HttpServletRequestWrapper {
@@ -41,7 +41,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     private String cleanXSS(String key, String value) {
         if (!StringUtils.isEmpty(value)) {
             log.trace("key {} with value [{}]", key, value);
-            String safeValue = Jsoup.parse(Jsoup.clean(value, Whitelist.basic())).text();
+            String safeValue = Jsoup.parse(Jsoup.clean(value, Safelist.basic())).text();
             log.trace("key {} with value sanitized [{}]", key, safeValue);
             if (StringUtils.isEmpty(safeValue)) {
                 throw new IllegalArgumentException("Parameter {" + key + "} contains an illegal value [" + value + "]");
