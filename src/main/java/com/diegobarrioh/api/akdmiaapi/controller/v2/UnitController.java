@@ -1,4 +1,4 @@
-package com.diegobarrioh.api.akdmiaapi.controller.v1;
+package com.diegobarrioh.api.akdmiaapi.controller.v2;
 
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Group;
 import com.diegobarrioh.api.akdmiaapi.exception.UnitNotFoundException;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "api/v2",produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Unit", description = "Endpoints to manage Unit entities")
 public class UnitController {
 

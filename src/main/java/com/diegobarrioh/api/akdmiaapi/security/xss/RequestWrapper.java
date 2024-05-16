@@ -44,7 +44,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             String safeValue = Jsoup.parse(Jsoup.clean(value, Safelist.basic())).text();
             log.trace("key {} with value sanitized [{}]", key, safeValue);
             if (StringUtils.isEmpty(safeValue)) {
-                throw new IllegalArgumentException("Parameter {" + key + "} contains an illegal value [" + value + "]");
+                throw new IllegalArgumentException("XSS Detected! Parameter {" + key + "} contains an illegal value.");
             }
             return safeValue;
         }

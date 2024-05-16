@@ -20,7 +20,7 @@ public class ControllerAdviceExceptionHandler {
     @ResponseBody
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    String IllegalArgumentHandler(RuntimeException ex) {
-        return ex.getMessage();
+    ErrorInfo IllegalArgumentHandler(HttpServletRequest req, RuntimeException ex) {
+        return new ErrorInfo(req.getRequestURI(),ex);
     }
 }

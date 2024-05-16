@@ -1,4 +1,4 @@
-package com.diegobarrioh.api.akdmiaapi.controller.v1;
+package com.diegobarrioh.api.akdmiaapi.controller.v2;
 
 import com.diegobarrioh.api.akdmiaapi.domain.entity.Question;
 import com.diegobarrioh.api.akdmiaapi.domain.repository.QuestionRepository;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "api/v1",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "api/v2",produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Question", description = "Endpoints to manage Question entities")
 public class QuestionController {
 

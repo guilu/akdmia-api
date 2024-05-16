@@ -19,4 +19,14 @@ spring:
       platform: h2
 
   web:
-    allowed-origins: "http://localhost:5173"
+    allowed-origins: http://localhost:5173
+
+components:
+  jwt:
+    secret-key: "4kdm144kdm144kdm144kdm144kdm144kdm144kdm144kdm14"
+    deprecation-time: 28800000 #8 hours expressed in milis
+    #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkJhZWxkdW5nIFVzZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.L5zvFL9qWykT7xOI8CUhlDHI9n67eAhllc9ZV-eQLtk
+
+logging:
+  level:
+    org.springframework.security: TRACE
