@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = DomainModelNames.TB01_GROUP)
-public class Group  extends BaseEntity {
+public class Group extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
 

@@ -24,30 +24,30 @@ public class Quiz extends BaseEntity {
     private int numQuestionsByUnit;
     private int numQuestionsTotal;
 
-    public Quiz(){
+    public Quiz() {
     }
 
-    public Quiz(int numQuestionsByUnit, int numQuestionsTotal){
-        this.correct=0;
-        this.failed=0;
+    public Quiz(int numQuestionsByUnit, int numQuestionsTotal) {
+        this.correct = 0;
+        this.failed = 0;
         this.numQuestionsByUnit = numQuestionsByUnit;
         this.numQuestionsTotal = numQuestionsTotal;
     }
 
-    public void setQuizQuestions(List<Question> questions){
-        if (questions == null ){
+    public void setQuizQuestions(List<Question> questions) {
+        if (questions == null) {
             return;
         }
         this.quizQuestions = new ArrayList<>();
-        for (Question question: questions) {
+        for (Question question : questions) {
             QuizQuestion quizQuestion = new QuizQuestion(question);
             quizQuestion.setQuiz(this);
             this.quizQuestions.add(quizQuestion);
         }
     }
 
-    public String toString(){
-        return "A:"+this.correct+" F:"+this.failed+" PxT:"+this.numQuestionsByUnit+" PT:"+this.numQuestionsTotal;
+    public String toString() {
+        return "A:" + this.correct + " F:" + this.failed + " PxT:" + this.numQuestionsByUnit + " PT:" + this.numQuestionsTotal;
     }
 
     public String toJson() {

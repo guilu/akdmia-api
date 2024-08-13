@@ -32,7 +32,7 @@ public class Question extends BaseEntity {
     private Exam exam;
 
 
-    public Question(){
+    public Question() {
 
     }
 
@@ -73,9 +73,9 @@ public class Question extends BaseEntity {
         this.exam = exam;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder json = new StringBuilder(" Question:" + this.getId() + ", Unit:" + this.getUnit().getId());
-        for(Answer answer: answers){
+        for (Answer answer : answers) {
             json.append(answer.toString());
         }
         return "{" + json + "}";

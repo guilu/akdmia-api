@@ -16,7 +16,7 @@ import java.util.Collections;
 @Log4j2
 public class BearerTokenFilter extends OncePerRequestFilter {
 
-    public static final String HEADER_NAME = "authentication";
+    public static final String HEADER_NAME = "authorization";
     public static final String BEARER = "Bearer ";
 
     @Override
@@ -24,7 +24,6 @@ public class BearerTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        //0 should we execute
         if (!Collections.list(request.getHeaderNames()).contains(HEADER_NAME)) {
             log.info("there's no " + HEADER_NAME + " header, moving on....");
             filterChain.doFilter(request, response);
@@ -49,6 +48,6 @@ public class BearerTokenFilter extends OncePerRequestFilter {
         newContext.setAuthentication(new ApiKeyAuthentication());
         SecurityContextHolder.setContext(newContext);
         filterChain.doFilter(request, response);
-        return;
+
     }
 }

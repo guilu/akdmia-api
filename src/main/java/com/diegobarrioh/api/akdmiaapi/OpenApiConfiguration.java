@@ -21,23 +21,23 @@ import org.springframework.context.annotation.Configuration;
         license = @License(name = "Apache 2.0", url = "http://foo.bar"),
         contact = @Contact(url = "http://diegobarrioh.dev", name = "Author: Diego Barrio Hortigüela", email = "diegobarrioh@gmail.com")
 ),
-security = @SecurityRequirement( name = "Authentication")
+        security = @SecurityRequirement(name = "Authentication")
 )
 @SecurityScheme(
         name = "Authentication",
-        description = "Boton Authorize de la página de openApi (swagger)",
+        description = "Botón Authorize de la página de openApi (swagger)",
         type = SecuritySchemeType.APIKEY,
         in = SecuritySchemeIn.HEADER
 )
 public class OpenApiConfiguration {
 
     @Bean
-    public GroupedOpenApi apiVersion1(){
+    public GroupedOpenApi apiVersion1() {
         return getVersion("1.0", "com.diegobarrioh.api.akdmiaapi.controller.v1");
     }
 
     @Bean
-    public GroupedOpenApi apiVersion2(){
+    public GroupedOpenApi apiVersion2() {
         return getVersion("2.0", "com.diegobarrioh.api.akdmiaapi.controller.v2");
     }
 

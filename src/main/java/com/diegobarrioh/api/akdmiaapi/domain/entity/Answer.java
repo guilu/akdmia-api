@@ -25,10 +25,11 @@ public class Answer extends BaseEntity {
     @Column
     private boolean ok;
 
-    public Answer(){
+    public Answer() {
 
     }
-    public Answer(String text, boolean ok, Question question){
+
+    public Answer(String text, boolean ok, Question question) {
         this.text = text;
         this.ok = ok;
         this.question = question;
@@ -58,9 +59,8 @@ public class Answer extends BaseEntity {
         this.ok = ok;
     }
 
-
     public String toString() {
-        return "{ id:"+ this.getId() + ",correcta:" + this.isOk() + "}";
+        return "{ id:" + this.getId() + ",correcta:" + this.isOk() + "}";
     }
 
 }

@@ -26,6 +26,7 @@ public class Unit extends BaseEntity {
     private String text;
 
     @OneToMany(mappedBy = "unit", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Question> questions;
 
     public Unit(){}
@@ -82,6 +83,6 @@ public class Unit extends BaseEntity {
      * @return
      */
     public boolean hasQuestions() {
-        return (this.getQuestions().size() > 0);
+        return (!this.getQuestions().isEmpty());
     }
 }
