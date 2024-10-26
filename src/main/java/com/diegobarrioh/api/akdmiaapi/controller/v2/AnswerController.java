@@ -12,33 +12,10 @@ import java.util.List;
 @RestController("AnswerControllerv2")
 @RequestMapping(value = "api/v2",produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Answer", description = "Endpoints to manage Answer entities")
-public class AnswerController {
+public class AnswerController extends com.diegobarrioh.api.akdmiaapi.controller.v1.AnswerController {
 
-    private final AnswerRepository answerRepository;
-    public AnswerController(AnswerRepository answerRepository)
-    {
-        this.answerRepository = answerRepository;
-    }
-
-    @GetMapping("/answers")
-    List<Answer> all(@RequestParam(value = "q",required = false) String search){
-        if (search == null || search.isEmpty()) {
-            return answerRepository.findAll();
-        }
-
-        return answerRepository.findByTextContainingIgnoreCase(search);
-
-    }
-
-    @PostMapping("/answers")
-    Answer newAnswer(@RequestBody Answer newAnswer){
-        return answerRepository.save(newAnswer);
-    }
-
-    @GetMapping("/answers/{id}")
-    Answer one(@PathVariable Long id) {
-        return answerRepository.findById(id)
-                .orElseThrow( () -> new AnswerNotFoundException(id) );
+    public AnswerController(AnswerRepository answerRepository) {
+        super(answerRepository);
     }
 
     @PutMapping("/answers/{id}")
@@ -56,7 +33,6 @@ public class AnswerController {
                     return answerRepository.save(newAnswer);
                 });
     }
-
 
     @DeleteMapping("/answers/{id}")
     void deleteAnswer(@PathVariable Long id) {
